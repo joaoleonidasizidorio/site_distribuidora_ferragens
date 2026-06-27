@@ -1,20 +1,49 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+<img width="100%" alt="Site da Distribuidora de Ferragens" src="./assets/preview.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# Site Distribuidora de Ferragens
 
-This contains everything you need to run your app locally.
+Plataforma desenvolvida sob medida para a **Distribuidora de Ferragens**, contando com um catálogo de produtos robusto, gestão de conteúdo e um design focado em alta conversão no setor industrial e de atacado.
 
-View your app in AI Studio: https://ai.studio/apps/7b4cafc7-13e1-4678-b383-8b825789e5b8
+## 🚀 Tecnologias Utilizadas
 
-## Run Locally
+Este projeto foi construído com ferramentas modernas para garantir alta performance e escalabilidade:
 
-**Prerequisites:**  Node.js
+- **Frontend:** React, TypeScript, Vite
+- **Backend / CMS:** Strapi (Node.js)
+- **Infraestrutura:** Docker & Docker Compose
+- **Integração:** Botão Flutuante do WhatsApp para orçamentos rápidos
 
+## 🛠️ Como rodar o projeto localmente
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+**Pré-requisitos:** Node.js (v18+) e Docker (opcional, para o banco de dados).
+
+### 1. Clonando o repositório
+```bash
+git clone https://github.com/joaoleonidasizidorio/site_distribuidora_ferragens.git
+cd site_distribuidora_ferragens
+```
+
+### 2. Rodando o Frontend (Interface)
+O frontend está localizado na raiz do projeto.
+```bash
+npm install
+npm run dev
+```
+Acesse em: `http://localhost:3000` ou `http://localhost:5173`
+
+### 3. Rodando o Backend (Strapi)
+O servidor e banco de dados estão na pasta `server`.
+```bash
+cd server
+npm install
+npm run develop
+```
+O painel administrativo do CMS ficará disponível em `http://localhost:1337/admin`
+
+## 📦 Deploy
+Este projeto contém arquivos `Dockerfile` e `docker-compose.yml` para facilitar a publicação em servidores na nuvem (AWS, DigitalOcean, VPS).
+
+---
+*Desenvolvido por João Leônidas*
