@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "specialtymatrixs",
+  "info": { "singularName": "specialtymatrix", "pluralName": "specialtymatrixs", "displayName": "Specialty Matrix" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "segment": { "type": "string" },
+    "responsible": { "type": "string" },
+    "responseTime": { "type": "string" },
+    "status": {
+      "type": "enumeration",
+      "enum": ["Disponível", "Ocupado"]
+    }
+  }
+}

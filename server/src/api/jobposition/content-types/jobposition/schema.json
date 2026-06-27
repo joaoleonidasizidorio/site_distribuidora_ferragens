@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobpositions",
+  "info": { "singularName": "jobposition", "pluralName": "jobpositions", "displayName": "Job Position" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "title": { "type": "string" },
+    "department": { "type": "string" },
+    "location": { "type": "string" },
+    "type": { "type": "string" },
+    "description": { "type": "text" },
+    "isActive": { "type": "boolean", "default": true }
+  }
+}

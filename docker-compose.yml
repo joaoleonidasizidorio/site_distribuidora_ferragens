@@ -1,0 +1,52 @@
+services:
+  web:
+    image: node:22-alpine
+    container_name: site_distribuidora
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/server
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: strapi_postgres
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi_password
+      POSTGRES_DB: strapi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+
+  strapi:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: strapi
+    restart: unless-stopped
+    env_file: ./server/.env
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi_password
+      STRAPI_ADMIN_HOST: 0.0.0.0
+    ports:
+      - "1337:1337"
+      - "5173:5173"
+    depends_on:
+      - postgres
+    volumes:
+      - ./server/public/uploads:/opt/app/public/uploads
+
+volumes:
+  postgres_data:

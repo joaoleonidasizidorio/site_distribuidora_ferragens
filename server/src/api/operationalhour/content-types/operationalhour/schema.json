@@ -1,0 +1,11 @@
+{
+  "kind": "collectionType",
+  "collectionName": "operationalhours",
+  "info": { "singularName": "operationalhour", "pluralName": "operationalhours", "displayName": "Operational Hour" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "department": { "type": "string" },
+    "days": { "type": "string" },
+    "hours": { "type": "string" }
+  }
+}

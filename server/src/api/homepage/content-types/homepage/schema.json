@@ -1,0 +1,63 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": "Dynamic content for the landing page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroDescription": {
+      "type": "text"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "categoriesTitle": {
+      "type": "string"
+    },
+    "categoriesDescription": {
+      "type": "text"
+    },
+    "benefit1Title": {
+      "type": "string"
+    },
+    "benefit1Description": {
+      "type": "text"
+    },
+    "benefit2Title": {
+      "type": "string"
+    },
+    "benefit2Description": {
+      "type": "text"
+    },
+    "benefit3Title": {
+      "type": "string"
+    },
+    "benefit3Description": {
+      "type": "text"
+    },
+    "contactTitle": {
+      "type": "string"
+    },
+    "contactDescription": {
+      "type": "text"
+    }
+  }
+}

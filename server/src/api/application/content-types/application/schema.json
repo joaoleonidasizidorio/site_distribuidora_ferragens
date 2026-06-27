@@ -1,0 +1,13 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": { "singularName": "application", "pluralName": "applications", "displayName": "Application" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "name": { "type": "string" },
+    "email": { "type": "string" },
+    "phone": { "type": "string" },
+    "jobTitle": { "type": "string" },
+    "resume": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["files"] }
+  }
+}

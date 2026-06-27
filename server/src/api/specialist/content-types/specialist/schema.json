@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "specialists",
+  "info": { "singularName": "specialist", "pluralName": "specialists", "displayName": "Specialist" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "name": { "type": "string" },
+    "role": { "type": "string" },
+    "description": { "type": "text" },
+    "email": { "type": "string" },
+    "phone": { "type": "string" },
+    "photo": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "isMain": { "type": "boolean", "default": false }
+  }
+}

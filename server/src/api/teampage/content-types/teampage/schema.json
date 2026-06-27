@@ -1,0 +1,16 @@
+{
+  "kind": "singleType",
+  "collectionName": "teampages",
+  "info": { "singularName": "teampage", "pluralName": "teampages", "displayName": "Team Page" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "heroSubtitle": { "type": "string", "default": "Consultoria Técnica Especializada" },
+    "heroTitle": { "type": "string", "default": "PRECISÃO QUE CONSTRÓI CONFIANÇA." },
+    "heroDescription": { "type": "text", "default": "Nossa equipe não apenas vende ferramentas..." },
+    "heroImage": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["images"] },
+    "specialistsTitle": { "type": "string", "default": "Nossos Especialistas" },
+    "specialistsSubtitle": { "type": "string", "default": "Atendimento técnico direto para ferragens..." },
+    "ctaTitle": { "type": "string", "default": "Fale com um Especialista" },
+    "ctaDescription": { "type": "text", "default": "Seja para uma cotação rápida ou..." }
+  }
+}

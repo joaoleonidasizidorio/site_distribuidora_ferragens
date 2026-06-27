@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "contactpages",
+  "info": { "singularName": "contactpage", "pluralName": "contactpages", "displayName": "Contact Page" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "pageTitle": { "type": "string", "default": "Fale Conosco" },
+    "pageDescription": { "type": "text", "default": "Suporte técnico e comercial para grandes obras e pequenos reparos. Nossa equipe de especialistas está pronta para ajudar com orçamentos e especificações industriais." },
+    "formTitle": { "type": "string", "default": "Enviar Mensagem" },
+    "whatsappPhone": { "type": "string", "default": "(11) 98765-4321" },
+    "salesPhone": { "type": "string", "default": "(11) 4004-1234" },
+    "salesHours": { "type": "string", "default": "Segunda a Sexta, das 08h às 18h" },
+    "addressLine1": { "type": "string", "default": "Av. das Indústrias, 1500 - Galpão B" },
+    "addressLine2": { "type": "string", "default": "Distrito Industrial, São Paulo - SP" },
+    "mapImage": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["images"] },
+    "hoursTitle": { "type": "string", "default": "Horários de Operação" }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "singleType",
+  "collectionName": "catalogpages",
+  "info": { "singularName": "catalogpage", "pluralName": "catalogpages", "displayName": "Catalog Page" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "pageTitle": { "type": "string", "default": "Catálogo de Materiais" },
+    "pageDescription": { "type": "text", "default": "Explore nossa linha completa de ferragens industriais..." },
+    "supportTitle": { "type": "string", "default": "Suporte Técnico" },
+    "supportText": { "type": "string", "default": "Precisa de dimensões personalizadas?" },
+    "tableTitle": { "type": "string", "default": "Tabela Comparativa de Resistência" }
+  }
+}

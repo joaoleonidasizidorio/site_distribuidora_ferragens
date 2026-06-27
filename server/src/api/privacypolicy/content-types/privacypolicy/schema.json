@@ -1,0 +1,11 @@
+{
+  "kind": "singleType",
+  "collectionName": "privacypolicys",
+  "info": { "singularName": "privacypolicy", "pluralName": "privacypolicys", "displayName": "Privacy Policy" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "title": { "type": "string", "default": "Política de Privacidade" },
+    "content": { "type": "text", "default": "A Distribuidora de Ferragens compromete-se a proteger a privacidade dos dados de nossos clientes B2B, parceiros e candidatos.\n\nColetamos apenas as informações necessárias para viabilizar orçamentos, vendas corporativas e candidaturas a vagas (como nome, e-mail, telefone corporativo e currículos profissionais).\n\nOs dados armazenados não são compartilhados com terceiros e são mantidos em servidores seguros, em total conformidade com a Lei Geral de Proteção de Dados (LGPD). A qualquer momento, você pode solicitar a remoção ou revisão dos seus dados entrando em contato pelo nosso e-mail oficial de privacidade." },
+    "lastUpdated": { "type": "date" }
+  }
+}

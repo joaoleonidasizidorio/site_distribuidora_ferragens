@@ -1,0 +1,15 @@
+{
+  "kind": "singleType",
+  "collectionName": "careerpages",
+  "info": { "singularName": "careerpage", "pluralName": "careerpages", "displayName": "Career Page" },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "heroSubtitle": { "type": "string", "default": "Vem construir o futuro com a gente" },
+    "heroTitle": { "type": "string", "default": "FAÇA PARTE DA NOSSA EQUIPE." },
+    "heroDescription": { "type": "text", "default": "Estamos sempre em busca de talentos excepcionais para integrar nosso time. Se você é apaixonado por engenharia, construção e inovação, confira nossas vagas." },
+    "heroImage": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["images"] },
+    "benefitsTitle": { "type": "string", "default": "Por que trabalhar conosco?" },
+    "benefitsDescription": { "type": "text", "default": "Oferecemos um ambiente dinâmico, plano de carreira acelerado e benefícios competitivos no mercado." },
+    "whatsappRh": { "type": "string", "default": "5511987654321" }
+  }
+}
