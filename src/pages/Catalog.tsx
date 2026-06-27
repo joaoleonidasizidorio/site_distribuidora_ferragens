@@ -1,4 +1,4 @@
-import { PenTool, Briefcase, Factory, Archive, Headset, Table2 } from 'lucide-react';
+import { PenTool, Briefcase, Factory, Archive, Headset, Table2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const STRAPI_URL = "http://localhost:1337";
@@ -14,6 +14,8 @@ export default function Catalog({ globalSearch, setGlobalSearch }: CatalogProps)
   const [catalogData, setCatalogData] = useState<any>(null);
   const [materialSpecs, setMaterialSpecs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
 
   useEffect(() => {
     if (globalSearch !== undefined) {
@@ -76,6 +78,13 @@ export default function Catalog({ globalSearch, setGlobalSearch }: CatalogProps)
            (p.sku && p.sku.toLowerCase().includes(lowerSearch)) ||
            (p.category && p.category.toLowerCase().includes(lowerSearch));
   });
+
+  const totalPages = Math.ceil(filteredProducts.length / pageSize);
+  const paginatedProducts = filteredProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   return (
     <div className="max-w-7xl mx-auto w-full px-6 md:px-16 py-12 lg:py-20">
@@ -203,8 +212,8 @@ export default function Catalog({ globalSearch, setGlobalSearch }: CatalogProps)
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {loading ? (
               <p className="col-span-full font-mono text-primary animate-pulse">Carregando itens do catálogo...</p>
-            ) : filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => {
+            ) : paginatedProducts.length > 0 ? (
+              paginatedProducts.map((product) => {
                 const coverUrl = product.cover ? `${STRAPI_URL}${product.cover.url}` : 'https://placehold.co/600x400/eeeeee/999999?text=Sem+Imagem';
                 return (
                   <div key={product.documentId || product.id} className="bg-surface-container-lowest industrial-border flex flex-col group rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -239,6 +248,43 @@ export default function Catalog({ globalSearch, setGlobalSearch }: CatalogProps)
               </div>
             )}
           </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-10">
+              <button 
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="p-2 border border-outline-variant rounded-sm hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Página Anterior"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              
+              {Array.from({ length: totalPages }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentPage(idx + 1)}
+                  className={`w-10 h-10 flex items-center justify-center font-mono text-sm font-bold border rounded-sm transition-colors ${
+                    currentPage === idx + 1 
+                      ? 'bg-primary border-primary text-on-primary' 
+                      : 'border-outline-variant hover:border-primary text-on-surface hover:text-primary'
+                  }`}
+                >
+                  {idx + 1}
+                </button>
+              ))}
+
+              <button 
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="p-2 border border-outline-variant rounded-sm hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Próxima Página"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          )}
 
           {/* Technical Specs Comparison Table */}
           <div className="mt-20">
