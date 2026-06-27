@@ -126,7 +126,7 @@ export default function Contact() {
               <MessageCircle className="text-secondary flex-shrink-0" size={36} />
               <div>
                 <p className="font-mono text-xs font-bold uppercase mb-1 tracking-widest text-on-primary-container/80">WhatsApp Comercial</p>
-                <p className="font-sans text-2xl font-bold tracking-tight">{contactData?.whatsappPhone || "(11) 98765-4321"}</p>
+                <p className="font-sans text-2xl font-bold tracking-tight">{contactData?.whatsappPhone || "(85) 98880-0637"}</p>
               </div>
             </div>
             <div className="bg-surface-container-lowest/20 p-2 rounded-full hidden md:block group-hover:-rotate-12 transition-transform">
@@ -139,8 +139,8 @@ export default function Contact() {
               <Phone className="text-primary mt-1 flex-shrink-0" size={24} />
               <div>
                 <h4 className="font-mono text-xs uppercase font-bold text-on-surface-variant mb-2 tracking-widest">Central de Vendas</h4>
-                <p className="font-sans text-xl font-bold text-primary mb-1">{contactData?.salesPhone || "(11) 4004-1234"}</p>
-                <p className="text-sm font-sans text-on-surface-variant">{contactData?.salesHours || "Segunda a Sexta, das 08h às 18h"}</p>
+                <p className="font-sans text-xl font-bold text-primary mb-1">{contactData?.salesPhone || "(85) 3252-3000"}</p>
+                <p className="text-sm font-sans text-on-surface-variant">{contactData?.salesHours || "Segunda a Sexta, das 08:00 às 16:45"}</p>
               </div>
             </div>
             <div className="h-px bg-outline-variant w-full"></div>
@@ -148,23 +148,32 @@ export default function Contact() {
               <MapPin className="text-primary mt-1 flex-shrink-0" size={24} />
               <div>
                 <h4 className="font-mono text-xs uppercase font-bold text-on-surface-variant mb-2 tracking-widest">Endereço Industrial</h4>
-                <p className="font-sans text-lg font-bold text-primary mb-1">{contactData?.addressLine1 || "Av. das Indústrias, 1500 - Galpão B"}</p>
-                <p className="text-sm font-sans text-on-surface-variant">{contactData?.addressLine2 || "Distrito Industrial, São Paulo - SP"}</p>
+                <p className="font-sans text-lg font-bold text-primary mb-1">{contactData?.addressLine1 || "R. Visc. Sabóia, 130 - Centro"}</p>
+                <p className="text-sm font-sans text-on-surface-variant">{contactData?.addressLine2 || "Fortaleza - CE, 60030-090, Brasil"}</p>
               </div>
             </div>
           </div>
 
           <div className="industrial-border bg-surface-container-high aspect-video relative group overflow-hidden rounded-sm shadow-sm hidden sm:block">
-            <img 
-              className="w-full h-full object-cover grayscale mix-blend-multiply opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
-              src={mapUrl} 
-              alt="Map view" 
-            />
-            <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors pointer-events-none"></div>
-            <div className="absolute bottom-4 right-4">
-              <button className="bg-surface-container-lowest industrial-border px-5 py-2.5 flex items-center gap-2 text-primary font-sans text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-colors shadow-sm rounded-sm">
+            <iframe 
+              src="https://maps.google.com/maps?q=R.%20Visc.%20Saboia,%20130%20-%20Centro,%20Fortaleza%20-%20CE&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={false} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 grayscale mix-blend-multiply opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+            ></iframe>
+            <div className="absolute bottom-4 right-4 pointer-events-auto">
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=R.+Visc.+Saboia,+130+-+Centro,+Fortaleza+-+CE"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-surface-container-lowest industrial-border px-5 py-2.5 flex items-center gap-2 text-primary font-sans text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-colors shadow-sm rounded-sm"
+              >
                 <ExternalLink size={14} /> Ver no Maps
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -196,7 +205,23 @@ export default function Contact() {
                   </tr>
                 ))
               ) : (
-                <tr><td colSpan={3} className="p-5 text-center">Nenhum horário cadastrado.</td></tr>
+                <>
+                  <tr className="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+                    <td className="p-5 font-bold text-primary">Atendimento</td>
+                    <td className="p-5 text-on-surface-variant font-medium">Segunda a Sexta</td>
+                    <td className="p-5 font-mono">08:00–16:45</td>
+                  </tr>
+                  <tr className="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+                    <td className="p-5 font-bold text-primary">Atendimento</td>
+                    <td className="p-5 text-on-surface-variant font-medium">Sábado</td>
+                    <td className="p-5 font-mono">08:00–12:00</td>
+                  </tr>
+                  <tr className="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+                    <td className="p-5 font-bold text-primary">Atendimento</td>
+                    <td className="p-5 text-on-surface-variant font-medium">Domingo</td>
+                    <td className="p-5 font-mono text-red-600 font-bold">Fechado</td>
+                  </tr>
+                </>
               )}
             </tbody>
           </table>
