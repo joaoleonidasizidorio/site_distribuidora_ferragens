@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Newspaper, Calendar, ArrowRight } from 'lucide-react';
+import { Newspaper, Calendar, ArrowRight, Activity, ExternalLink } from 'lucide-react';
 
 const STRAPI_URL = "http://localhost:1337";
 
 export default function Blog({ setCurrentPage }: { setCurrentPage: (p: string) => void }) {
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<any[]>([]);
+  const [newsLoading, setNewsLoading] = useState(true);
 
   useEffect(() => {
+    // Busca artigos internos (Strapi)
     fetch(`${STRAPI_URL}/api/articles?populate=*&sort=publishedDate:desc`)
       .then(res => res.json())
       .then(json => {
@@ -15,6 +18,17 @@ export default function Blog({ setCurrentPage }: { setCurrentPage: (p: string) =
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
+
+    // Busca notícias externas automáticas (ArchDaily)
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.archdaily.com.br/br/feed')
+      .then(res => res.json())
+      .then(json => {
+        if (json && json.items) {
+          setNews(json.items.slice(0, 3));
+        }
+      })
+      .catch(err => console.error(err))
+      .finally(() => setNewsLoading(false));
   }, []);
 
   return (
@@ -29,6 +43,59 @@ export default function Blog({ setCurrentPage }: { setCurrentPage: (p: string) =
             Novidades da indústria, dicas de materiais e atualizações do nosso estoque.
           </p>
         </div>
+      </div>
+
+      {/* Radar Automático */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <Activity className="text-secondary" size={28} />
+          <h2 className="font-sans text-2xl font-bold uppercase tracking-tight text-on-surface">Radar da Construção</h2>
+        </div>
+        
+        {newsLoading ? (
+           <p className="font-mono text-primary animate-pulse">Buscando notícias no mercado...</p>
+        ) : news.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {news.map((item, idx) => {
+              const newsImage = item.enclosure?.link || item.thumbnail || 'https://placehold.co/600x400/eeeeee/999999?text=Not%C3%ADcia';
+              return (
+              <a 
+                key={idx} 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-surface-container-lowest industrial-border flex flex-col group rounded-sm overflow-hidden shadow-sm hover:border-secondary hover:shadow-md transition-all"
+              >
+                <div className="h-40 overflow-hidden relative border-b border-outline-variant bg-surface-container">
+                  <img 
+                    src={newsImage} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center gap-2 text-on-surface-variant mb-3 font-mono text-xs uppercase tracking-wider">
+                    <Calendar size={14} /> {new Date(item.pubDate).toLocaleDateString('pt-BR')}
+                  </div>
+                  <h3 className="font-sans font-bold text-lg text-primary mb-4 group-hover:text-secondary line-clamp-3">
+                    {item.title}
+                  </h3>
+                  <div className="font-mono text-xs text-on-surface-variant flex items-center justify-between mt-auto pt-4 border-t border-outline-variant">
+                    <span>ArchDaily Brasil</span>
+                    <span className="flex items-center gap-1 text-secondary uppercase font-bold tracking-widest"><ExternalLink size={12} /> LER MAIS</span>
+                  </div>
+                </div>
+              </a>
+              );
+            })}
+          </div>
+        ) : (
+           <p className="font-sans text-on-surface-variant text-sm">Nenhuma notícia encontrada no momento.</p>
+        )}
+      </div>
+
+      <div className="flex items-center gap-3 mb-6">
+        <h2 className="font-sans text-2xl font-bold uppercase tracking-tight text-on-surface">Artigos da Distribuidora</h2>
       </div>
 
       {loading ? (
